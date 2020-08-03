@@ -64,12 +64,15 @@ export class ApiService {
                                     reportProgress: true, // track progress
                                   });
 
-    return new Promise ( resolve => {
-        this.http.request(req).subscribe((resp) => {
+    return new Promise ( async(resolve, reject) => {
+        try { this.http.request(req).subscribe((resp) => {
         if (resp && (<any> resp).status && (<any> resp).status === 200) {
           resolve(this.post(endpoint, payload));
         }
-      });
+      }
+      );} catch (err) {
+        reject(err)
+    }
     });
   }
 }
