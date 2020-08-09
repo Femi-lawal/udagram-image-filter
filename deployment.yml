@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: udagram-app
+  labels:
+    app: udagram-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: udagram-app
+  template:
+    metadata:
+      labels:
+        app: udagram-app
+    spec:
+      containers:
+      - name: udagram-app
+        image: femilawal/udagram
+        ports:
+        - containerPort: 80
